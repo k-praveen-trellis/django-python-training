@@ -2,7 +2,7 @@ from django.shortcuts import render
 def home(request):
     return render(request,'home.html')
 
-def count(request):
+def count_file(request):
     # txt = request.FILES['input_text']
     if request.method == "POST":
         uploaded_file = request.FILES['input_file']
@@ -18,10 +18,15 @@ def count(request):
         for word in text.split(' '):
             new_text.append(word)
         length = len(new_text)
-    return render(request,'count.html',\
+    return render(request,'count_text.html',\
     {
     'FileName':file_name,
     'FileSize':file_size,
     'Text':text,
     'Length':length
     })
+
+def count_text(request):
+    new_text = request.GET['input_text']
+    temp = new_text.split()
+    return render(request,'count_text.html',{'words':new_text,'len':len(temp)})

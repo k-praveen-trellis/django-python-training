@@ -1,13 +1,20 @@
 <html>
   <head>
-    <title>Welcome</title>
+    <title>Word Count</title>
   </head>
   <body>
-    <h1>Type something...</h1>
-
-    <form action="{% url 'count' %}" enctype="multipart/form-data" method="post">
+    <h1>Word Count</h1>
+    <h2>Option 1: Word count from a file</h2>
+    <form action="{% url 'count_file' %}" enctype="multipart/form-data" method="post">
       {% csrf_token %}
       <input type="file" name="input_file" required/> <br />
       <input type="submit" value="Count">
+    </form>
+    <h2>Option 2: Word count from input</h2>
+    <form action="{% url 'count_input' %}">
+      {% csrf_token %}
+      <input type="text" name="input_text" required/> <br />
+      <input type="submit" value="Count">
+    </form>
   </body>
 </html>
