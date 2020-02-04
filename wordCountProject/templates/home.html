@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Welcome</title>
+  </head>
+  <body>
+    <h1>Type something...</h1>
+
+    <form action="{% url 'count' %}" enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+      <input type="file" name="input_file" required/> <br />
+      <input type="submit" value="Count">
+  </body>
+</html>
