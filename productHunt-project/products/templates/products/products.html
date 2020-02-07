@@ -1,0 +1,14 @@
+{% if user.is_authenticated %}
+<!-- <a href="javascript:{document.getElementById(logoutme).submit()}">LOGOUT</a>
+<form action="{% url 'logout' %}" method="POST" id="logoutme">
+<input type="hidden" />
+</form> -->
+<a href ="{% url 'logout' %}"> Logout</a>
+{% else %}
+<a href="{% url 'signup' %}">SIGNUP</a><br>
+<a href="{% url 'login' %}">SIGN IN</a>
+{% endif %}
+
+<!-- <br><br>{% if return_value %}
+{{ return_value }}
+{% endif %} -->
