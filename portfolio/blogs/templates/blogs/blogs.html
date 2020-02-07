@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Blogs</title>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:300,500&amp;display=swap'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/style_blog.css' %}">
+    </head>
+    <body>
+      <div class="hamburger">
+          <div class="hamburger__container">
+              <span class="hamburger__top"></span>
+              <span class="hamburger__middle"></span>
+              <span class="hamburger__bottom"></span>
+          </div>
+      </div>
+      <div class="menu">
+          <div class="menu__container bg-white">
+                  <nav class="menu__nav">
+                      <ul class="menu__list">
+                          <li class="menu__item js-span">Links</li>
+                          <li class="menu__item">
+                              <a class="menu__link" href="../home/home.html">Home</a>
+                          </li>
+                          <li class="menu__item">
+                              <a class="menu__link" href="#">About</a>
+                          </li>
+                          <li class="menu__item">
+                              <a class="menu__link" href="#">Work</a>
+                          </li>
+                      </ul>
+                  </nav>
+                  <nav class="menu__nav">
+                      <ul class="menu__list">
+                          <li class="menu__item js-span">follow me on</li>
+                          <li class="menu__item">
+                              <a class="menu__link" href="https://linkedin.com/in/praveen-kumar-inbox" target="_blank">LinkedIn</a>
+                          </li>
+                          <li class="menu__item">
+                              <a class="menu__link" href="https://github.com/inboxpraveen" target="_blank">Github</a>
+                          </li>
+                          <li class="menu__item">
+                              <a class="menu__link" href="https://twitter.com/InboxPraveen" target="_blank">Twitter</a>
+                          </li>
+                          <li class="menu__item menu__item--contact">
+                          <span>Contact Me</span>
+                          <div class="menu__info">
+                              <span>
+                                  <a class="menu__external" href="mailto:inbox.praveen.kumar17@gmail.com">PRAVEEN KUMAR</a>
+                              </span>
+                              </div>
+                          </li>
+                      </ul>
+                  </nav>
+          </div>
+          <div class="menu__img bg-black">
+              <figure class="absolute-bg" style="background-image: url('https://source.unsplash.com/t2Sai-AqIpI/900x1600');"></figure>
+          </div>
+        </div>
+
+        <div class='row'>
+          {% for blog in blogs.all %}
+            <div class='product--{{ blog.color }}'>
+                <div class='product_inner'>
+                    <img src='{{ blog.image }}' width='300'>
+                    <p>{{ blog.title }}</p>
+                    <a href="{{ blog.link }}" target="_blank">READ MORE</a>
+                </div>
+            </div>
+          {% endfor %}
+        </div>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js'></script>
+        <script type="text/javascript" src="{% static 'js/style_blog.js' %}"></script>
+        <script src='https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js'></script>
+        <script src='https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js'></script>
+
+    </body>
+</html>
