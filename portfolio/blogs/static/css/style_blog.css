@@ -62,22 +62,22 @@ header i:nth-of-type(2) {
           flex: auto;
 }
 .product--blue {
-  background: linear-gradient(-45deg, #92DCE5 10%, #E0E5EC 10%);
+  background: linear-gradient(-45deg, #92DCE5 50%, #E0E5EC 50%);
 }
 .product--orange {
-  background: linear-gradient(-45deg, #EF6F6C 10%, #E0E5EC 10%);
+  background: linear-gradient(-45deg, #EF6F6C 50%, #E0E5EC 50%);
 }
 .product--red {
-  background: linear-gradient(-45deg, #E84855 10%, #E0E5EC 10%);
+  background: linear-gradient(-45deg, #E84855 50%, #E0E5EC 50%);
 }
 .product--green {
-  background: linear-gradient(-45deg, #70C1B3 10%, #E0E5EC 10%);
+  background: linear-gradient(-45deg, #70C1B3 50%, #E0E5EC 50%);
 }
 .product--yellow {
-  background: linear-gradient(-45deg, #E8DB7D 10%, #E0E5EC 10%);
+  background: linear-gradient(-45deg, #E8DB7D 50%, #E0E5EC 50%);
 }
 .product--pink {
-  background: linear-gradient(-45deg, #FF386D 10%, #E0E5EC 10%);
+  background: linear-gradient(-45deg, #FF386D 50%, #E0E5EC 50%);
 }
 .product img, .product--blue img, .product--orange img, .product--red img, .product--green img, .product--yellow img, .product--pink img {
   max-width: 100%;
