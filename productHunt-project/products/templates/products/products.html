@@ -7,9 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href='https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style_home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_home_blog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_search.css' %}">
   </head>
   <body>
+    <form name="myform" class="search-container" method="GET" action="{% url 'search' %}">
+      {% csrf_token %}
+      <input type="text" id="search-box" name="search" class="search-box" placeholder="Search" />
+      <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
+      <input type="submit" id="search-submit" />
+    </form>
     {% if user.is_authenticated %}
       <nav class="nav">
         <a href="{% url 'product_home' %}" class="nav-item is-active" active-color="blue">Home</a>
@@ -25,6 +37,48 @@
         <span class="nav-indicator"></span>
       </nav>
     {% endif %}
+
+    {% if search_result %}
+    <div id="container">
+      {% for product in search_result %}
+          <a class="card-link" href="{% url 'detail' product.id %}">
+            <article class="blog-card">
+              <img class="post-image" src="{{ product.image.url }}" />
+              <div class="article-details">
+                <h3 class="post-title">{{ product.title }}</h3>
+                <p class="post-description">{{ product.body }}</p>
+                <p class="post-author">By {{ product.main_user_hunter.username }} | Date: {{ product.pub_date_pretty }}</p>
+              </div>
+            </article>
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if error %}
+      {{ error }}
+    {% endif %}
+
+    <div id="container">
+      {% for product in products.all %}
+        <a class="card-link" href="{% url 'detail' product.id %}">
+          <article class="blog-card">
+            <img class="post-image" src="{{ product.image.url }}" />
+            <div class="article-details">
+              <h3 class="post-title">{{ product.title }}</h3>
+              <p class="post-description">{{ product.body }}</p>
+              <p class="post-author">By {{ product.main_user_hunter.username }} | Date: {{ product.pub_date_pretty }}</p>
+              <p>#vote-count : {{ product.votes_count }}</p>
+            </div>
+          </article>
+        </a>
+      {% endfor %}
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script>
+    <script src='https://unpkg.com/vue'></script>
     <script type="text/javascript" src="{% static 'js/style_home.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/style_details.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/style_search.js' %}"></script>
   </body>
 </html>

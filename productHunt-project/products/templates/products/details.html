@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" >
+    <head>
+      <meta charset="UTF-8">
+      <title>Blog</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css'>
+      <link rel='stylesheet' href='https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+      <link rel="stylesheet" href="{% static 'css/style_details.css' %}">
+      <link rel="stylesheet" href="{% static 'css/style_home.css' %}">
+    </head>
+    <body style="background:#F1F1F1;">
+
+      {% if user.is_authenticated %}
+        <nav class="nav">
+          <a href="{% url 'product_home' %}" class="nav-item" active-color="blue">Home</a>
+          <a href="{% url 'create' %}" class="nav-item" active-color="green">Create</a>
+          <a href="{% url 'logout' %}" class="nav-item" active-color="orange">Logout</a>
+          <span class="nav-indicator"></span>
+        </nav>
+      {% else %}
+        <nav class="nav">
+          <a href="{% url 'product_home' %}" class="nav-item" active-color="blue">Home</a>
+          <a href="{% url 'login' %}" class="nav-item" active-color="green">Login</a>
+          <a href="{% url 'signup' %}" class="nav-item" active-color="orange">Signup</a>
+          <span class="nav-indicator"></span>
+        </nav>
+      {% endif %}
+
+      <section class="s-content s-content--top-padding s-content--narrow">
+        <a href="javascript:{document.getElementById('upvote_blog').submit();}"\
+        style="box-shadow: 2px 2px 1px -1px grey; padding:15px; position:fixed; border-radius:5px; right:10px; background:black; color:white;">
+        Upvote {{ product.votes_count }}</a>
+        <article class="row entry format-standard">
+            <div class="entry__media col-full">
+                <div class="entry__post-thumb">
+                    <img src="{{ product.image.url }}">
+                </div>
+            </div>
+            <div class="entry__header col-full">
+                <h1 class="entry__header-title display-1">{{ product.title }}</h1>
+                <ul class="entry__header-meta">
+                    <li class="date">{{ product.pub_date }}</li>
+                    <li class="byline">
+                        By
+                        <a href="#">{{ product.main_user_hunter.username }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-full entry__main">
+                <p class="lead drop-cap">{{ product.body }}</p>
+            </div>
+        </article>
+    </section>
+
+      <form id="upvote_blog" method="POST" action="{% url 'upvote' product.id %}">
+        {% csrf_token %}
+        <input type="hidden" />
+      </form>
+      <script type="text/javascript" src="{% static 'js/style_home.js' %}"></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js'></script>
+      <script src="{% static 'js/style_details.js' %}"></script>
+    </body>
+</html>
