@@ -34,7 +34,7 @@ def signup(request):
                 return render(request,'accounts/signup.html',{'error':'UserName already exists! '})
             except User.DoesNotExist:
                 user = User.objects.create_user(request.POST['input_user_name'],password=request.POST['input_password1'])
-                auth.login(request,user)
+                # auth.login(request,user)
                 return redirect('product_home')
         else:
             return render(request,'accounts/signup.html',{'error':'Password should match '})
